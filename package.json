@@ -1,0 +1,21 @@
+{
+  "name": "backendnode",
+  "version": "0.1.0",
+  "description": "Chat como telegram montado en node y consumo de datos con mongodb",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "chat",
+    "telegram",
+    "server",
+    "node",
+    "mongodb"
+  ],
+  "author": "Carlos Gutiérrez",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
