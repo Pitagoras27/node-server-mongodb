@@ -1,10 +1,21 @@
 const express = require('express');
-// import express from './express'; sistema de modulos de ES6
+const router = express.Router();
+
 var app = express();
 
-app.use('/', (req, res) => {
+app.use(router);
+
+router.get('/message', function (req, res) {
+    res.send('lista de mensajeS')
+})
+
+router.post('/message', function (req, res) {
+    res.send('Mensaje añadido')
+})
+
+/* app.use('/', (req, res) => {
     res.send('server con Express');
-});
+}); */
 
 app.listen(3000);
 console.log('Listen to port: 3000');
