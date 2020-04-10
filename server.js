@@ -1,21 +1,26 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const router = express.Router();
 
 var app = express();
-
+app.use(bodyParser.json());
+// urlencoded del bodyparser para indicar el tipo de contenido enviado
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(router);
 
 router.get('/message', function (req, res) {
-    res.send('lista de mensajeS')
-})
+    res.send('lista de mensajes!!')
+});
 
 router.post('/message', function (req, res) {
     res.send('Mensaje añadido')
-})
+});
 
-/* app.use('/', (req, res) => {
-    res.send('server con Express');
-}); */
+router.delete('/message', function (req, res) {
+    console.log(req.query)
+    console.log(req.body, "AA")
+    res.send('Mensaje ' + req.body.text + ' añadido correctamente!!')
+});
 
 app.listen(3000);
 console.log('Listen to port: 3000');
