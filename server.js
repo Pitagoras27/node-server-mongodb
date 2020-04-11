@@ -23,7 +23,7 @@ router.get('/message', function (req, res) {
 router.post('/message', function (req, res) {
     // res.send('Mensaje ' + req.body.text + ' añadido correctamente!!')
     if (req.query.error == 'ok')
-        response.error(req, res, 'Error simulado', 401);
+        response.error(req, res, 'Error simulado', 401, 'Mensaje visible sólo para el back');
     else
         response.success(req, res, 'Creado correctamente', 201);
 });
