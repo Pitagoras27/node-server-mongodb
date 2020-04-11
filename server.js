@@ -19,14 +19,15 @@ router.get('/message', function (req, res) {
 });
 
 router.post('/message', function (req, res) {
-    res.send('Mensaje añadido')
-});
-
-router.delete('/message', function (req, res) {
     console.log(req.query)
     console.log(req.body, "AA")
-    res.send('Mensaje ' + req.body.text + ' añadido correctamente!!')
+    // res.send('Mensaje ' + req.body.text + ' añadido correctamente!!')
+    res.status(200).send([{
+        'error': null,
+        'body': 'Ejecutado correctamente!'
+    }]);
 });
+
 
 app.listen(3000);
 console.log('Listen to port: 3000');
