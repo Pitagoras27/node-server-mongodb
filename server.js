@@ -12,7 +12,7 @@ router.get('/message', function (req, res) {
     console.log(req.headers) // las cabeceras que se envían en el request
     // enviar una cabecera personalizada permite trabajar de forma más segura, 
     // accesos personalizados, cache control - etc
-    res.headers({
+    res.header({
         "custom-header": "Valor personalizado"
     })
     res.send('lista de mensajes!!')
