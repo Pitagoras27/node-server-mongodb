@@ -21,8 +21,8 @@ router.post('/', function (req, res) {
         .then(() => {
             response.success(req, res, 'Creado correctamente', 201);
         })
-        .catch(() => {
-            response.error(req, res, 'Información inválida', 500, 'Error en el controlador');
+        .catch(e => {
+            response.error(req, res, 'Unexpected Error', 500, e);
         })
 
 });
