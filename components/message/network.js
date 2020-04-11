@@ -2,6 +2,7 @@
 
 const express = require('express')
 const response = require('../../network/response')
+const controller = require('./controller')
 const router = express.Router()
 
 router.get('/', function (req, res) {
@@ -16,11 +17,14 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-    // res.send('Mensaje ' + req.body.text + ' añadido correctamente!!')
-    if (req.query.error == 'ok')
-        response.error(req, res, 'Error simulado', 500, 'Mensaje visible sólo para el back');
-    else
-        response.success(req, res, 'Creado correctamente', 201);
+    controller.addMessage(req.body.user, req.body.message)
+        .then(() => {
+            response.success(req, res, 'Creado correctamente', 201);
+        })
+        .catch(() => {
+            response.error(req, res, 'Información inválida', 500, 'Error en el controlador');
+        })
+
 });
 
 module.exports = router;
