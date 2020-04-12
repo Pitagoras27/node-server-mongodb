@@ -13,7 +13,6 @@ router.get('/', function (req, res) {
         "custom-header": "Valor personalizado"
     });
     response.success(req, res, "Lista de mensajes")
-    res.send('lista de mensajes!!')
 });
 
 router.post('/', function (req, res) {
