@@ -6,19 +6,19 @@ const controller = require('./controller')
 const router = express.Router()
 
 router.get('/', function (req, res) {
-    console.log(req.headers) // las cabeceras que se envían en el request
-    // enviar una cabecera personalizada permite trabajar de forma más segura, 
-    // accesos personalizados, cache control - etc
-    res.header({
-        "custom-header": "Valor personalizado"
-    });
-    response.success(req, res, "Lista de mensajes")
+    controller.getMessages()
+        .then((messageList) => {
+            response.success(req, res, messageList, 200)
+        })
+        .catch(e => {
+            response.error(req, res, 'Unexpected Error', 500, e)
+        })
 });
 
 router.post('/', function (req, res) {
     controller.addMessage(req.body.user, req.body.message)
         .then(() => {
-            response.success(req, res, 'Creado correctamente', 201);
+            response.success(req, res, 'Creado correctamente', 200);
         })
         .catch(e => {
             response.error(req, res, 'Unexpected Error', 500, e);
