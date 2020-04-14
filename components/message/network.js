@@ -23,7 +23,11 @@ router.post('/', function (req, res) {
         .catch(e => {
             response.error(req, res, 'Unexpected Error', 500, e);
         })
-
 });
+
+router.patch('/:id', function (req, res) {
+    console.log(req.params.id)
+    res.send('Ok')
+})
 
 module.exports = router;
