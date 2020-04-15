@@ -4,6 +4,7 @@ const controller = require('./controller');
 const router = express.Router();
 
 router.post('/', function (req, res) {
+    console.log("en netwok->", req.body)
     controller.addChat(req.body.users)
         .then(data => {
             response.success(req, res, data, 201);

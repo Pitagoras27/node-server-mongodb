@@ -6,7 +6,7 @@ const controller = require('./controller')
 const router = express.Router()
 
 router.get('/', function (req, res) {
-    const filterMessages = req.query.user || null
+    const filterMessages = req.query.chat || null
     controller.getMessages(filterMessages)
         .then((messageList) => {
             response.success(req, res, messageList, 200)
@@ -17,9 +17,9 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-    controller.addMessage(req.body.user, req.body.message)
-        .then(() => {
-            response.success(req, res, 'Creado correctamente', 200);
+    controller.addMessage(req.body.chat, req.body.user, req.body.message)
+        .then((fullMessage) => {
+            response.success(req, res, fullMessage, 201);
         })
         .catch(e => {
             response.error(req, res, 'Unexpected Error', 500, e);
