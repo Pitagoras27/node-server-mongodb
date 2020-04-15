@@ -2,7 +2,7 @@ const db = require('mongoose')
 const Model = require('./model')
 
 db.Promise = global.Promise
-db.connect('mongodb+srv://<user_name>:<password>@cluster0-gnypt.mongodb.net/<db_name>', {
+db.connect('mongodb+srv://<user_name>:<password>@cluster0-gnypt.mongodb.net/<db_name', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -16,9 +16,9 @@ const addMessage = (message) => {
 
 const getMessages = async (filterUser) => {
     if (filterUser !== null) {
-        filter = { user: filterUser }
+        filterUser = { user: filterUser }
     }
-    const messages = await Model.find(filter)
+    const messages = await Model.find(filterUser)
     return messages
 }
 
@@ -32,8 +32,17 @@ const updateText = async (id, message) => {
     return newMessage
 }
 
+const removeMessage = id => {
+    //Model.findByIdAndDelete(id);
+    return Model.deleteOne({
+        _id: id
+    });
+
+}
+
 module.exports = {
     add: addMessage,
     list: getMessages,
     updateText,
+    remove: removeMessage,
 }
