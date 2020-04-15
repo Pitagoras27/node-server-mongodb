@@ -11,6 +11,9 @@ const addUser = (name) => {
     return store.add(user)
 }
 
+const listUsers = () => store.list()
+
 module.exports = {
     addUser,
+    listUsers,
 }

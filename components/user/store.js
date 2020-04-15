@@ -5,6 +5,9 @@ const addUser = (user) => {
     return myUser.save()
 }
 
+const listUsers = () => Model.find()
+
 module.exports = {
     add: addUser,
+    list: listUsers,
 }
