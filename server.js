@@ -1,15 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const connect = require('./db')
 const router = require('./network/routes');
 
+connect('mongodb+srv://<user_name>:<password>@cluster0-gnypt.mongodb.net/<db_name')
 var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(router); // utiliza el app.use para gestionar las rutas con el middelware de express
 router(app)
-
-
 
 app.use('/app', express.static('public'));
 
