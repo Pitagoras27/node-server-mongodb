@@ -1,11 +1,4 @@
-const db = require('mongoose')
 const Model = require('./model')
-
-db.Promise = global.Promise
-db.connect('mongodb+srv://db_user_learning:1Zi7dgNCHrPhJZrY@cluster0-gnypt.mongodb.net/telegrom', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
 
 console.log('Connected successful!')
 
@@ -14,12 +7,23 @@ const addMessage = (message) => {
     myMessage.save()
 }
 
-const getMessages = async (filterUser) => {
-    if (filterUser !== null) {
-        filterUser = { user: filterUser }
-    }
-    const messages = await Model.find(filterUser)
-    return messages
+async function getMessages(filterChat) {
+    return new Promise((resolve, reject) => {
+        let filter = {};
+        if (filterChat !== null) {
+            filter = { chat: filterChat };
+        }
+        Model.find(filter)
+            .populate('user')
+            .exec((error, populated) => {
+                if (error) {
+                    reject(error);
+                    return false;
+                }
+
+                resolve(populated);
+            });
+    })
 }
 
 const updateText = async (id, message) => {
