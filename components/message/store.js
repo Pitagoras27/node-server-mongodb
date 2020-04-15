@@ -2,7 +2,7 @@ const db = require('mongoose')
 const Model = require('./model')
 
 db.Promise = global.Promise
-db.connect('mongodb+srv://<user_name>:<password>@cluster0-gnypt.mongodb.net/<db_name', {
+db.connect('mongodb+srv://db_user_learning:1Zi7dgNCHrPhJZrY@cluster0-gnypt.mongodb.net/telegrom', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
