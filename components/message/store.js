@@ -10,13 +10,15 @@ db.connect('mongodb+srv://<user_name>:<password>@cluster0-gnypt.mongodb.net/<db_
 console.log('Connected successful!')
 
 const addMessage = (message) => {
-    // list.push(message);
     const myMessage = new Model(message)
     myMessage.save()
 }
 
-const getMessages = async () => {
-    const messages = await Model.find()
+const getMessages = async (filterUser) => {
+    if (filterUser !== null) {
+        filter = { user: filterUser }
+    }
+    const messages = await Model.find(filter)
     return messages
 }
 
