@@ -25,3 +25,5 @@ yarn-error.log*
 #Editor
 vsWorkspace.code-workspace
 
+/public/files
+.env
